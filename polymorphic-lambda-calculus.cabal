@@ -27,7 +27,7 @@ library
   exposed-modules:
       Expr
       Lib
-      PrettyPrintUtils
+      Parser
   other-modules:
       Paths_polymorphic_lambda_calculus
   hs-source-dirs:
