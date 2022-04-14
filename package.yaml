@@ -23,6 +23,8 @@ dependencies:
 - base >= 4.7 && < 5
 - parsec
 - containers
+- hspec
+- hspec-contrib
 
 library:
   source-dirs: src
