@@ -5,6 +5,16 @@ import Expr
 import Parser
 import Test.Hspec
 import Test.Hspec.QuickCheck
+import PrettyPrint
+import TypeCheck
+import Data.Map
+
+typecheck' :: (Ord n, Eq n, PrettyPrint n)
+          => UniqueSupply n 
+          -> [(n, Type n)]
+          -> Expr n n 
+          -> Either String (Type n)
+typecheck' uniqs ctx = typecheck uniqs (fromList ctx)
 
 main :: IO ()
 main = hspec $ do
@@ -62,3 +72,7 @@ main = hspec $ do
               "fn f: (A->B) => fn x:T => f (f (f (f x)))" ] -- 4, makes sense?
 
       mapM_ (flip shouldSatisfy isRight . altRunParseExpr) encodings
+
+    describe "Typecheck Expressions" $ do
+      it "var" $
+        typecheck' [] [("x", TypeVar "X")] (Var "x") `shouldBe` Right (TypeVar "X")

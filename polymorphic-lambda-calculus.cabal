@@ -25,9 +25,13 @@ source-repository head
 
 library
   exposed-modules:
+      AlternativeParse
+      Evaluate
       Expr
       Lib
       Parser
+      PrettyPrint
+      TypeCheck
   other-modules:
       Paths_polymorphic_lambda_calculus
   hs-source-dirs:
@@ -35,6 +39,8 @@ library
   build-depends:
       base >=4.7 && <5
     , containers
+    , hspec
+    , hspec-contrib
     , parsec
   default-language: Haskell2010
 
@@ -48,6 +54,8 @@ executable polymorphic-lambda-calculus-exe
   build-depends:
       base >=4.7 && <5
     , containers
+    , hspec
+    , hspec-contrib
     , parsec
     , polymorphic-lambda-calculus
   default-language: Haskell2010
@@ -63,6 +71,8 @@ test-suite polymorphic-lambda-calculus-test
   build-depends:
       base >=4.7 && <5
     , containers
+    , hspec
+    , hspec-contrib
     , parsec
     , polymorphic-lambda-calculus
   default-language: Haskell2010
