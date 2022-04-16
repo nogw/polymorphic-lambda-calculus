@@ -76,3 +76,7 @@ main = hspec $ do
     describe "Typecheck Expressions" $ do
       it "var" $
         typecheck' [] [("x", TypeVar "X")] (Var "x") `shouldBe` Right (TypeVar "X")
+      it "var not in context" $
+        typecheck' ["Y"] [] (Var "x") `shouldBe` Right (TypeVar "Y")
+      it "typecheck abstraction" $ 
+        typecheck' [] [] (Abstraction "x" (TypeVar "A") (Var "x")) `shouldBe` Right (TypeArrow (TypeVar "A") (TypeVar "A"))
